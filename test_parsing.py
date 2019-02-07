@@ -1,4 +1,4 @@
-import parser.py as pars
+import parser as pars
 
 #test if our function send a sentence in lower case
 def test_in_lower_case():
