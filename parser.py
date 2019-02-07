@@ -1,6 +1,8 @@
 """docs function sentence parsing"""
 
-REMPLACER CARACTERE INUTILE PAR ESPACE
-METTRE TOUT EN MINUSCULE
-SUPPRIMER LES STOPS WORDS
-RETOURNER PHRASE NETTOYEE
+def in_lower_case(self, sentence):
+	self.sentence = ""
+	return self.sentence.lower()
+#METTRE TOUT EN MINUSCULE
+#SUPPRIMER LES STOPS WORDS
+#RETOURNER PHRASE NETTOYEE
