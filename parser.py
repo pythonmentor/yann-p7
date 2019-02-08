@@ -3,7 +3,7 @@ class SentenceParse:
         
     def in_lower_case(self, sentence):
 	    self.sentence = str(sentence)   
-	    print(self.sentence.lower())
+	    return(self.sentence.lower())
 	    
 #METTRE TOUT EN MINUSCULE
 #SUPPRIMER LES STOPS WORDS
