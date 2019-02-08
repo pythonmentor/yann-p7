@@ -5,3 +5,5 @@ def test_in_lower_case():
 	pa = script.SentenceParse()
 	x = "TEST"
 	assert pa.in_lower_case(x) == "test"
+
+
