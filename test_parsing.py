@@ -12,9 +12,9 @@ def test_in_lower_case():
 
 
 def test_deleting_stop_words():
-    useless_sentence = "afin ailleurss test"
+    useless_sentence = "afin ailleurs openclassroom"
     pa = script.SentenceParse()
-    assert pa.deleting_stop_words(useless_sentence) == "test"
+    assert pa.deleting_stop_words(useless_sentence) == "openclassroom"
 
 
 

@@ -13,11 +13,17 @@ class SentenceParse:
         
     def deleting_stop_words(self,sentence):
         self.uncleaned_sentence = []
-        self.cleaned_sentence = []
         self.sentence = str(sentence)
-        for word in self.sentence:
-            self.uncleaned_sentence.append(word)
-        print(self.uncleaned_sentence)
+        for word in self.sentence.split():
+            if word in self.stop_words:
+                pass
+            elif word == " ":
+                pass
+            else:
+                self.uncleaned_sentence.append(word)
+        self.new_sentence = " ".join(self.uncleaned_sentence)
+        print(self.new_sentence)
+
       
         
 
