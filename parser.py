@@ -11,8 +11,24 @@ class SentenceParse:
         return(self.sentence.lower())
 
         
+    def deleting_stop_words(self,sentence):
+        self.uncleaned_sentence = []
+        self.cleaned_sentence = []
+        self.sentence = str(sentence)
+        for word in self.sentence:
+            self.uncleaned_sentence.append(word)
+        print(self.uncleaned_sentence)
+      
         
 
+
+
+
+def main():
+    p = SentenceParse()
+    x = "afin ailleurs openclassroom"
+    p.deleting_stop_words(x)
+main()
 
 
     
