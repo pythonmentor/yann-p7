@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+# -*- coding: Utf-8 -*
+
 """docs function sentence parsing"""
 class SentenceParse:
 
@@ -24,11 +27,6 @@ class SentenceParse:
         self.new_sentence = " ".join(self.uncleaned_sentence)
         return(self.new_sentence)
 
-      
-        
-
-
-    
     
 
 #SUPPRIMER LES STOPS WORDS
