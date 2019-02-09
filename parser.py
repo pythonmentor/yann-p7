@@ -28,15 +28,6 @@ class SentenceParse:
         
 
 
-
-
-def main():
-    p = SentenceParse()
-    x = "afin ailleurs openclassroom"
-    p.deleting_stop_words(x)
-main()
-
-
     
     
 
