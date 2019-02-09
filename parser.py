@@ -22,7 +22,7 @@ class SentenceParse:
             else:
                 self.uncleaned_sentence.append(word)
         self.new_sentence = " ".join(self.uncleaned_sentence)
-        print(self.new_sentence)
+        return(self.new_sentence)
 
       
         
