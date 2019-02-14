@@ -34,10 +34,20 @@ class SentenceParse:
         self.new_sentence = []
         for word in self.sentence.split():
             if word in self.special_char:
-                self.new_sentence.append(" ")
+                word = "  "
+                self.new_sentence.append(word)
+                print(self.new_sentence)
             else:
                 self.new_sentence.append(word)
-        self.cleaned_sentence = " ".join(self.new_sentence)
-        return(self.cleaned_sentence)
+        print(self.new_sentence)
+        
 
 #RETOURNER PHRASE NETTOYEE
+
+
+
+
+def main():
+    pa= SentenceParse()
+    pa.deleting_special("openclassroom,paris:france")
+main()
