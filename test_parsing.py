@@ -20,7 +20,7 @@ def test_deleting_stop_words():
 def test_deleting_special():
     special_sentence = "openclassroom,paris:france"
     pa = script.SentenceParse()
-    asssert pa.deleting_special(special_sentence) == "openclassroom paris france"
+    assert pa.deleting_special(special_sentence) == "openclassroom paris france"
 
 
 

@@ -31,17 +31,12 @@ class SentenceParse:
 
     def deleting_special(self, sentence):
         self.sentence = str(sentence)
-        self.new_sentence = []
-        for word in self.sentence.split():
-            if word in self.special_char:
-                word = "  "
-                self.new_sentence.append(word)
-                print(self.new_sentence)
-            else:
-                self.new_sentence.append(word)
-        print(self.new_sentence)
+        intab = ",:?;."
+        outtab ="     "
+        trantab = str.maketrans(intab, outtab)
+        self.sentence = self.sentence.translate(trantab)
+        return self.sentence
         
-
 #RETOURNER PHRASE NETTOYEE
 
 
