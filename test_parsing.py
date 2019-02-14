@@ -23,4 +23,7 @@ def test_deleting_special():
     assert pa.deleting_special(special_sentence) == "openclassroom paris france"
 
 
-
+def test_deleting_several_spaces():
+    sentence = "openclassroom  paris"
+    pa =  script.SentenceParse()
+    assert pa.deleting_several_spaces(sentence) == "openclassroom paris"

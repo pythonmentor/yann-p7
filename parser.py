@@ -31,18 +31,23 @@ class SentenceParse:
 
     def deleting_special(self, sentence):
         self.sentence = str(sentence)
-        intab = ",:?;."
-        outtab ="     "
+        intab = ",:?;.-"
+        outtab ="      "
         trantab = str.maketrans(intab, outtab)
         self.sentence = self.sentence.translate(trantab)
         return self.sentence
         
-#RETOURNER PHRASE NETTOYEE
+    def deleting_several_spaces(self, sentence):
+        "function that deletes spaces in case of double spaces"
+        self.sentence = str(sentence)
+        self.sentence = self.sentence.replace("  ", " ")
+        return(self.sentence)
+
 
 
 
 
 def main():
     pa= SentenceParse()
-    pa.deleting_special("openclassroom,paris:france")
+    pa.deleting_several_spaces("openclassroom  paris")
 main()
