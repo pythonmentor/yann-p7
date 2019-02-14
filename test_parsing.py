@@ -27,3 +27,9 @@ def test_deleting_several_spaces():
     sentence = "openclassroom  paris"
     pa =  script.SentenceParse()
     assert pa.deleting_several_spaces(sentence) == "openclassroom paris"
+
+
+def test_returning_cleaned_sentence():
+    sentence = "TEST,openclassroom ailleurs:hamdi"
+    pa = script.SentenceParse()
+    assert pa.returning_cleaned_sentence(sentence) == "test openclassroom hamdi"
