@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 # -*- coding: Utf-8 -*
 import requests
+
+from constante import *
 """docs function sentence parsing"""
 class SentenceParse:
 
@@ -59,7 +61,7 @@ class SentenceParse:
 
 
 def main():
-    url= "https://maps.googleapis.com/maps/api/geocode/json?address=pourrqis%20tu%20l%27addresse%20de%20openclassroom%20paris&key=AIzaSyDBjpVBRJ05E-RxgY0HCEeOD5fTk8l5kEo"
+    url= "https://maps.googleapis.com/maps/api/geocode/json?address=pourrqis%20tu%20l%27addresse%20de%20openclassroom%20paris&key="+key_api
     response = requests.get(url)
     response_json = response.json()
     print(response_json["results"][0]["formatted_address"])
