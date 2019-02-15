@@ -57,14 +57,22 @@ class SentenceParse:
         self.sentence = self.deleting_stop_words(self.sentence)
         self.sentence = self.deleting_several_spaces(self.sentence)
         return(self.sentence)
+        self.sending_to_api(self.sentence)
         
+    
+    def sending_to_api(self, sentence):
+        "function that sends the sentence to google api"
+        self.url= "https://maps.googleapis.com/maps/api/geocode/json?address=" + self.sentence + "&key=" + key_api
+        self.response = requests.get(self.url)
+        self.response_json = response.json()
+        print(self.response_json["results"][0]["formatted_address"])
 
 
 def main():
-    url= "https://maps.googleapis.com/maps/api/geocode/json?address=pourrqis%20tu%20l%27addresse%20de%20openclassroom%20paris&key="+key_api
-    response = requests.get(url)
-    response_json = response.json()
-    print(response_json["results"][0]["formatted_address"])
+    pa = SentenceParse()
+    pa.returning_cleaned_sentence("openclassroom paris")
+main()
+    
    
 
 
