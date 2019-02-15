@@ -69,7 +69,8 @@ class SentenceParse:
 
 def main():
     pa = SentenceParse()
-    pa.returning_cleaned_sentence("OPENCLASSROOM, paris")
+    sentence = input("Veuillez entrer votre recherche ")
+    pa.returning_cleaned_sentence(sentence)
     pa.sending_to_api(pa.sentence)
 main()
     
