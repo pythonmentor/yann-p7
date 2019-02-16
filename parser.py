@@ -64,17 +64,8 @@ class SentenceParse:
         self.url= "https://maps.googleapis.com/maps/api/geocode/json?address="+ sentence + "&key=" + key_api
         self.response = requests.get(self.url)
         self.response_json = self.response.json()
-        print(self.response_json["results"][0]["formatted_address"])
+        return(self.response_json["results"][0]["formatted_address"])
 
 
-def main():
-    pa = SentenceParse()
-    sentence = input("Veuillez entrer votre recherche ")
-    pa.returning_cleaned_sentence(sentence)
-    pa.sending_to_api(pa.sentence)
-main()
     
    
-
-
-main()

@@ -1,5 +1,10 @@
 import parser as script
 
+import urllib.request
+
+from io import BytesIO
+import json
+
 
 
 
@@ -34,4 +39,13 @@ def test_returning_cleaned_sentence():
     pa = script.SentenceParse()
     assert pa.returning_cleaned_sentence(sentence) == "test openclassroom hamdi"
 
+
+def test_http_return(monkeypatch):
+    pa = script.SentenceParse()
+    results = [{"formatted_address": "7 Cité Paradis, 75010 Paris, France"}]
+    def mockreturn(request):
+        return BytesIO(json.dumps(results).encode())
+
+    monkeypatch.setattr(urllib.request, "urlopen", mockreturn)
+    assert pa.sending_to_api("openclassroom paris") == results
 
