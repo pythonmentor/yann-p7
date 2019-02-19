@@ -5,7 +5,7 @@ header
   color:black;
    font-weight: bold;
   text-align: center;
-  background-image: url("nature.jpg");
+  background-image: url("nature.jpg") ;
   background-position: center;
   background-color : blue;
  
@@ -13,3 +13,6 @@ header
 
 }
 
+.element {
+	padding-top: 100px;
+}
