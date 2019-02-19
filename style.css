@@ -1,8 +1,11 @@
 header
 {
   font-size : 40px;
-  color:blue;
+  color:black;
    font-weight: bold;
-  text-align: center
-  background-image =url("nature.jpg")
+  text-align: center;
+  background-image: url("nature.jpg");
+  background-position: center;
+  background-color : blue;
+
 }
