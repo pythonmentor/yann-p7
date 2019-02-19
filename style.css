@@ -8,11 +8,5 @@ header
   background-image: url("nature.jpg") ;
   background-position: center;
   background-color : blue;
- 
-
-
-}
-
-.element {
-	padding-top: 100px;
+	padding-top: 40px;
 }
