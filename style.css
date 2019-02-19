@@ -1,11 +1,15 @@
 header
 {
-  font-size : 40px;
+  font-size : 50px;
+  font-family: Impact;
   color:black;
    font-weight: bold;
   text-align: center;
   background-image: url("nature.jpg");
   background-position: center;
   background-color : blue;
+ 
+
 
 }
+
