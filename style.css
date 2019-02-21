@@ -2,11 +2,20 @@ header
 {
   font-size : 50px;
   font-family: Impact;
-  color:black;
+  color:blue;
    font-weight: bold;
   text-align: center;
   background-image: url("nature.jpg") ;
   background-position: center;
-  background-color : blue;
-	padding-top: 40px;
+  padding-top: 60px
+}
+.element
+{
+	margin: 10px auto;
+}
+
+img
+{
+	border:none;
+
 }
