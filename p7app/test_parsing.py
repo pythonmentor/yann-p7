@@ -5,6 +5,8 @@ from p7app import parser as script
 from io import BytesIO
 import json
 
+import requests 
+
 
 
 
@@ -14,7 +16,7 @@ def test_in_lower_case():
     x = "TEST"
     assert pa.in_lower_case(x) == "test"
 
-"""
+
 
 def test_deleting_stop_words():
     useless_sentence = "afin ailleurs openclassroom"
@@ -41,4 +43,12 @@ def test_returning_cleaned_sentence():
 
 
 
-"""
+def test_sending_to_api(monkeypatch):
+    "mock for the api request"
+    pa = script.SentenceParse()
+    results = "7 Cité Paradis, 75010 Paris, France"
+        
+    def mockreturn(requests):
+        return results
+    monkeypatch.setattr(requests, "get", mockreturn)
+    assert pa.sending_to_api("openclassroom") == results

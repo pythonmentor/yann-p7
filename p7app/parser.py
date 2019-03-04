@@ -3,6 +3,7 @@
 import requests
 
 from config import *
+
 """docs function sentence parsing"""
 class SentenceParse:
 
@@ -61,16 +62,27 @@ class SentenceParse:
     def sending_to_api(self, sentence):
         "function that sends the sentence to google api"
         self.sentence = str(sentence)    
-        self.url= "https://maps.googleapis.com/maps/api/geocode/json?address="+ self.sentence + "&key=" + key_api
+        self.url= "https://maps.googleapis.com/maps/api/geocode/json?address="+ self.sentence + "&key=" + KEY_API
         self.response = requests.get(self.url)
         self.response_json = self.response.json()
-        return(self.response_json["results"][0]["formatted_address"])
+        self.address = (self.response_json["results"][0]["formatted_address"])
+        self.place_lat = (self.response_json["results"][0]["geometry"]["location"]["lat"])
+        self.place_lng = (self.response_json["results"][0]["geometry"]["location"]["lng"])
+    
+    def search_mediawiki(self):
+        "function that looks up for article on wikipedia"
+        self.lat = "48.8747265"
+        self.lng = "2.3505517"
+        self.urll = "https://en.wikipedia.org/w/api.php?action=query&list=geosearch&gsradius=1000&gscoord=" + self.lat + "|" + self.lng + "&setformat=json&format=json" 
+        self.responsee = requests.get(self.urll)
+        self.responsee_json = self.responsee.json()
+
+        
 
 
     
-   
 def main():
     pa = SentenceParse()
-    pa.in_lower_case("TEXTE")
-    print(pa.sentence)
+    pa.search_mediawiki()
+    print(pa.responsee_json)
 main()
