@@ -4,6 +4,8 @@ import requests
 
 from config import *
 
+from mediawiki import MediaWiki
+
 """docs function sentence parsing"""
 class SentenceParse:
 
@@ -76,6 +78,16 @@ class SentenceParse:
         self.urll = "https://en.wikipedia.org/w/api.php?action=query&list=geosearch&gsradius=1000&gscoord=" + self.lat + "|" + self.lng + "&setformat=json&format=json" 
         self.responsee = requests.get(self.urll)
         self.responsee_json = self.responsee.json()
+        self.title = self.responsee_json["query"]["geosearch"][0]["title"]
+        self.distance = self.responsee_json["query"]["geosearch"][0]["dist"]
+
+    def display_article(self, title):
+        "function that display the wikipedia article"
+        self.title = title
+        wikipedia = MediaWiki()
+        self.results = wikipedia.opensearch(self.title, results = 1, lang = "fr")
+
+
 
         
 
@@ -84,5 +96,7 @@ class SentenceParse:
 def main():
     pa = SentenceParse()
     pa.search_mediawiki()
-    print(pa.responsee_json)
+    print(pa.title, pa.distance)
+    pa.display_article(pa.title)
+    print(pa.results)
 main()
