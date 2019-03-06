@@ -4,7 +4,7 @@ import requests
 
 from config import *
 
-from mediawiki import MediaWiki
+import wikipediaapi
 
 """docs function sentence parsing"""
 class SentenceParse:
@@ -68,24 +68,16 @@ class SentenceParse:
         self.response = requests.get(self.url)
         self.response_json = self.response.json()
         self.address = (self.response_json["results"][0]["formatted_address"])
-        self.place_lat = (self.response_json["results"][0]["geometry"]["location"]["lat"])
+        self.title = (self.response_json["results"][0]["geometry"]["location"]["title"])
         self.place_lng = (self.response_json["results"][0]["geometry"]["location"]["lng"])
     
-    def search_mediawiki(self):
+    def search_mediawiki(self, title):
         "function that looks up for article on wikipedia"
-        self.lat = "48.8747265"
-        self.lng = "2.3505517"
-        self.urll = "https://en.wikipedia.org/w/api.php?action=query&list=geosearch&gsradius=1000&gscoord=" + self.lat + "|" + self.lng + "&setformat=json&format=json" 
-        self.responsee = requests.get(self.urll)
-        self.responsee_json = self.responsee.json()
-        self.title = self.responsee_json["query"]["geosearch"][0]["title"]
-        self.distance = self.responsee_json["query"]["geosearch"][0]["dist"]
+        self.title = str(title)
+        wiki_wiki = wikipediaapi.Wikipedia('fr')
+        self.page_py = wiki_wiki.page(self.title)
+        
 
-    def display_article(self, title):
-        "function that display the wikipedia article"
-        self.title = title
-        wikipedia = MediaWiki()
-        self.results = wikipedia.opensearch(self.title, results = 1, lang = "fr")
 
 
 
@@ -95,8 +87,7 @@ class SentenceParse:
     
 def main():
     pa = SentenceParse()
-    pa.search_mediawiki()
-    print(pa.title, pa.distance)
-    pa.display_article(pa.title)
-    print(pa.results)
+    text= "Tour Eiffel"
+    pa.search_mediawiki(text)
+    print(pa.page_py.text)
 main()
