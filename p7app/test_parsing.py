@@ -64,7 +64,15 @@ def test_sending_to_api_handles_correct_result(monkeypatch)
                 }]
             }
         
+    def mock_search_around(self, lat, lng):
+        pass
+        
+    # -tc- patching de request.get pour simuler l'appel à l'api
     monkeypatch.setattr("p7app.parser.request.get", MockGet)
+    # -tc- patching de SentenceParse.search_around pour éviter de tester deux méthode en 
+    # -tc- même temps. On la remplace par une méthode qui ne fait rien.
+    monkeypatch.setattr("p7app.parser.SentenceParse.search_around", mock_search_around)
+    
     pa = script.SentenceParse()
     pa.sending_to_api("petit test avec mock")
     assert pa.address == FAKE_ADDRESS
