@@ -73,9 +73,22 @@ class SentenceParse:
     
     def search_mediawiki(self, title):
         "function that looks up for article on wikipedia"
+        
         self.title = str(title)
         wiki_wiki = wikipediaapi.Wikipedia('fr')
         self.page_py = wiki_wiki.page(self.title)
+        self.result = self.page_py.summary
+        ligne = self.result.split(".")
+        i = 0
+        for l in ligne:
+            self.info = l
+            i = i+1
+            if i == 1:
+                break
+        print("Mon petit loup t'ai je dèja raconté ce que ètait ce lieu?"" "+l+".")
+
+
+
         
 
 
@@ -89,5 +102,4 @@ def main():
     pa = SentenceParse()
     text= "Tour Eiffel"
     pa.search_mediawiki(text)
-    print(pa.page_py.text)
 main()
