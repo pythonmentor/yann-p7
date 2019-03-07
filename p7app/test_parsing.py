@@ -41,8 +41,36 @@ def test_returning_cleaned_sentence():
     pa = script.SentenceParse()
     assert pa.returning_cleaned_sentence(sentence) == "test openclassroom hamdi"
 
-
-
+# -tc- petit exemple de test avec mock
+def test_sending_to_api_handles_correct_result(monkeypatch)
+    FAKE_ADDRESS = "adresse de test, rue du test 77, openclassrooms"
+    FAKE_LAT: 49.0
+    FAKE_LNG: 3.0
+        
+    class MockGet:
+        def __init__(self, url):
+            pass
+        
+        def json(self):
+            return {
+                "results": [{
+                    "formatted_address": FAKE_ADDRESS,
+                    "geometry": {
+                        "location: {
+                            "lat": FAKE_LAT,
+                            "lng": FAKE_LNG
+                        }
+                    }
+                }]
+            }
+        
+    monkeypatch.setattr("p7app.parser.request.get", MockGet)
+    pa = script.SentenceParse()
+    pa.sending_to_api("petit test avec mock")
+    assert pa.address == FAKE_ADDRESS
+    assert pa.lat == FAKE_LAT
+    assert pa.lng == FAKE_LNG
+    
 def test_sending_to_api(monkeypatch):
     "mock for the api request"
     pa = script.SentenceParse()
