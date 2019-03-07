@@ -68,12 +68,23 @@ class SentenceParse:
         self.response = requests.get(self.url)
         self.response_json = self.response.json()
         self.address = (self.response_json["results"][0]["formatted_address"])
-        self.title = (self.response_json["results"][0]["geometry"]["location"]["title"])
-        self.place_lng = (self.response_json["results"][0]["geometry"]["location"]["lng"])
+        self.lat = (self.response_json["results"][0]["geometry"]["location"]["lat"])
+        self.lng = (self.response_json["results"][0]["geometry"]["location"]["lng"])
+        self.search_around(self.lat, self.lng)
     
-    def search_mediawiki(self, title):
+    def search_around(self, lat,lng):
+        "search article around gps coordinates"
+        self.lat = str(lat)
+        self.lng = str(lng)
+        self.url_geo = "https://fr.wikipedia.org/w/api.php?action=query&list=geosearch&gsradius=1000&gscoord=" + self.lat + "|" + self.lng +"&setformat=json&formatversion=2&format=json"
+        self.resp = requests.get(self.url_geo)
+        self.respo_json = self.resp.json()
+        self.title = (self.respo_json["query"]["geosearch"][0]["title"])
+        self.dist = (self.respo_json["query"]["geosearch"][0]["title"])
+        self.search_mediawiki(self.title, self.dist)
+
+    def search_mediawiki(self, title, dist):
         "function that looks up for article on wikipedia"
-        
         self.title = str(title)
         wiki_wiki = wikipediaapi.Wikipedia('fr')
         self.page_py = wiki_wiki.page(self.title)
@@ -85,7 +96,10 @@ class SentenceParse:
             i = i+1
             if i == 1:
                 break
-        print("Mon petit loup t'ai je dèja raconté ce que ètait ce lieu?"" "+l+".")
+        if self.dist == 0:
+            print("Mon petit loup t'ai je dèja raconté ce que ètait ce lieu?"" "+l+".")
+        else:
+            print("Mon petit loup sais tu que ce lieu est situé à coté d'un lieu très spécial:\n" + l + ".")
 
 
 
@@ -100,6 +114,7 @@ class SentenceParse:
     
 def main():
     pa = SentenceParse()
-    text= "Tour Eiffel"
-    pa.search_mediawiki(text)
+    text= "Courbevoie"
+    pa.sending_to_api(text)
+    print(pa.title)
 main()
