@@ -42,7 +42,7 @@ def test_returning_cleaned_sentence():
     assert pa.returning_cleaned_sentence(sentence) == "test openclassroom hamdi"
 
 # -tc- petit exemple de test avec mock
-def test_sending_to_api_handles_correct_result(monkeypatch)
+def test_sending_to_api_handles_correct_result(monkeypatch):
     FAKE_ADDRESS = "adresse de test, rue du test 77, openclassrooms"
     FAKE_LAT: 49.0
     FAKE_LNG: 3.0
