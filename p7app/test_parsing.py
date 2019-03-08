@@ -44,8 +44,8 @@ def test_returning_cleaned_sentence():
 # -tc- petit exemple de test avec mock
 def test_sending_to_api_handles_correct_result(monkeypatch):
     FAKE_ADDRESS = "adresse de test, rue du test 77, openclassrooms"
-    FAKE_LAT: 49.0
-    FAKE_LNG: 3.0
+    FAKE_LAT = 49.0
+    FAKE_LNG = 3.0
         
     class MockGet:
         def __init__(self, url):
@@ -56,7 +56,7 @@ def test_sending_to_api_handles_correct_result(monkeypatch):
                 "results": [{
                     "formatted_address": FAKE_ADDRESS,
                     "geometry": {
-                        "location: {
+                        "location": {
                             "lat": FAKE_LAT,
                             "lng": FAKE_LNG
                         }
@@ -68,7 +68,7 @@ def test_sending_to_api_handles_correct_result(monkeypatch):
         pass
         
     # -tc- patching de request.get pour simuler l'appel à l'api
-    monkeypatch.setattr("p7app.parser.request.get", MockGet)
+    monkeypatch.setattr("p7app.parser.requests.get", MockGet)
     # -tc- patching de SentenceParse.search_around pour éviter de tester deux méthode en 
     # -tc- même temps. On la remplace par une méthode qui ne fait rien.
     monkeypatch.setattr("p7app.parser.SentenceParse.search_around", mock_search_around)
